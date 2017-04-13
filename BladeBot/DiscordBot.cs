@@ -21,7 +21,7 @@ namespace BladeBot
         public DiscordBot()
         {
 
-
+            client.MessageSent += onChatMessage;
             client = new DiscordClient(
                 input =>
                 {
@@ -73,6 +73,16 @@ namespace BladeBot
                 client.SetGame(new Game("Use *Status"));
             });
             
+        }
+        
+
+        public void onChatMessage(object sender, MessageEventArgs e)
+        {
+            if(e.Server == client.FindServers("SAES/Bastage Network") && e.Channel == client.GetChannel(298241377429487616))
+            {
+                var msg = e.Message;
+                //MTAServer.sendChatMessage(msg);
+            }
         }
 
         private void Log(object sneder, LogMessageEventArgs e)
